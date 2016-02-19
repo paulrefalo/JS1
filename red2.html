@@ -1,0 +1,38 @@
+<!doctype html>
+<html lang="en">
+<head>
+ <title> Quiz </title>
+ <meta charset="utf-8">
+ <style>
+ .basic {
+  font-family: Helvetica, Verdana, sans-serif;
+  position: relative;
+  width: 200px;
+  height: 200px;
+  border: 1px solid black;
+ }
+ </style>
+ <script>
+ window.onload = init;
+ 
+ function init() {
+  div = document.querySelector(".basic"); 
+  // div.onclick = addRed;
+  div.onclick = changeStyle;
+ }
+ 
+ function changeStyle() {
+     div.style.color = "white";
+     div.style.backgroundColor = "green";
+     div.style.border = "10px ridge red";   
+ }
+ 
+ </script>
+</head>
+<body>
+ <div class="basic">
+  Click to change my style!
+ </div>  
+</body>
+</html>
+ 

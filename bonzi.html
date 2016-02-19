@@ -1,0 +1,34 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <title> Accessing multiple elements </title>
+  <meta charset="utf-8">
+  <script>
+
+
+   function money_format(n) {
+     n += '';
+     x = n.split('.');
+     x1 = x[0];
+     x2 = x.length > 1 ? '.' + x[1] : '';
+
+     var r=/(\d+)(\d{3})/;
+
+     while (r.test(x1)) {
+       x1 = x1.replace(r, '$1' + ',' + '$2');
+     }
+
+     x2 = Number(x2).toFixed(2);
+     
+     var sum = '$' + x1 + x2.substr(1);
+     return '$' + x1 + x2.substr(1);
+   }
+
+   document.getElementById("output").innerHTML = money_format(32);
+
+</script>
+</head>
+<body>
+    <p id="output"></p>
+</body>
+</html>

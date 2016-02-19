@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html>
+<head>
+
+<script type="text/javascript">
+
+
+function currencyFormat(num) { 
+    // var snum = num;
+    //num = num.replace(/[^\d\.]/g, '');
+    //num = parseFloat(num);
+    return "$" + num.toFixed(2).replace(/(\d)(?=(\d{3})+(?!\d))/g, "$1,")
+}
+
+myString = "12lk8dsdlk.ew4sd$%67*";
+myString = myString.replace(/[^\d\.]/g, '');
+//myString = parseFloat(myString);
+console.info(myString);
+myString = parseFloat(myString);
+console.info(myString);
+
+
+var myParse = "239.j5kg";
+myParse = parseFloat(myParse);
+
+//console.info(currencyFormat(myString));
+console.info(currencyFormat(2665));   // $2,665.00
+console.info(currencyFormat(1026651234)); // $102,665.00
+
+
+
+</script>
+</head>
+<body>
+ <form>
+   <input type="text" class="numberOnly" id="miles" value="" onkeypress="currencyFormat(num)" />
+ </form>
+</body>
+</html>

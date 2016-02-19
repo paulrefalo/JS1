@@ -1,0 +1,21 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <title> Arrays </title>
+  <meta charset="utf-8">
+  <script> 
+    var myBiggest = 0;     				// Declare and define var myBiggest = 0      
+    var myArray = [3.14159, 7, 42, 99, 2, 21, 108];	// Declare and define myArray and its elements
+    for (var i = 0; i < myArray.length; i++) {		// Loop through myArray
+      if ( myBiggest < myArray[i] ) {			// Compare current myBiggest to myArray[i] to see which is bigger
+        myBiggest = myArray[i];				// Redefine myBiggest if myArray[i] is larger
+        }      
+    } 
+    console.log(myBiggest);				// Display the results of myBiggest to console.log
+  </script>
+</head>
+<body>
+  <p id="output">
+  </p>
+</body>
+</html>

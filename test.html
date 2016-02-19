@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html>
+<body>
+
+<p>This example calls a function to convert input to money format:</p>
+
+<p id="output"></p>
+<div class='printchatbox' id='printchatbox'></div>
+
+<input type='text' name='fname' class='chatinput' id='chatinput'>
+
+<script>
+
+function money_format(n) {
+     n += '';
+     x = n.split('.');
+     x1 = x[0];
+     x2 = x.length > 1 ? '.' + x[1] : '';
+
+     var r=/(\d+)(\d{3})/;
+
+     while (r.test(x1)) {
+       x1 = x1.replace(r, '$1' + ',' + '$2');
+     }
+
+     x2 = Number(x2).toFixed(2);
+     
+     var sum = '$' + x1 + x2.substr(1);
+     return '$' + x1 + x2.substr(1);
+}
+document.getElementById("output").innerHTML = money_format(32678.1);
+
+var inputBox = document.getElementById('chatinput');
+
+inputBox.onkeyup = function(){
+    document.getElementById('printchatbox').innerHTML = inputBox.value;
+}
+
+
+</script>
+
+</body>
+</html>

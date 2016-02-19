@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <title> JS formatting as you go </title>
+  <meta charset="utf-8">
+</head>
+<body>
+<p>This example converts an input to money format on the fly:<br>
+$
+<input
+    type="text" id="out1"
+    name="money"
+    placeholder="1234.56"
+    autofocus="autofocus"
+    onkeypress="return isAllowed(event)"
+    onkeyup="format(this.value);"
+    maxlength="10"
+/>
+</p>
+<script>
+var currentInput = '';						// Global var to control charCodes used
+
+function format(input) {					// function adds in commas and a zero as needed
+    input = input.replace(/\,/g,'');				// Strip out commas for re-formatting
+    input = input.replace(/^0+/g,'');				// remove leading zeros
+    input = input.replace(/^-0+/g,'-');				// remove leading zeros, but keep the minus sign
+    var rx = input;						// use var rx for regex
+    if (rx.match(/^-*\./) !== null) {				// if input starts with - or . or -. 
+      input = input.replace(".", "0.");				//   then include a leading zero
+    } else {
+      input = input.replace(/(\d)(?=(\d{3})+(?!\d))/g, "$1,");	// add in the commas as needed
+    }
+    currentInput = input;					// assign global var currentInput = t
+    document.getElementById("out1").value=input;		// output to id "out1"
+    return;
+}
+
+function isAllowed(evt) {					// function returns true if key is allowed
+    evt = (evt) ? evt : window.event;
+    var charCode = (evt.which) ? evt.which : evt.keyCode;
+    if (currentInput.match(/./) != null) {			// allow minus sign as first entry only
+        if (charCode == 45) { return false; }			// dash is charCode 45
+    }
+    if (currentInput.match(/\./) != null) {			// allow only one period or decimal
+        if (charCode == 46) { return false; }			// period is charCode 46
+    }
+    if (currentInput.match(/\.\d\d/) != null) {			// allow two decimal places only
+        return false; 			
+    }
+    if (charCode > 44 && charCode < 58 && charCode != 47) { 	// allow [0-9] . -
+        return true; 						
+    }
+    return false;
+}
+
+</script>
+
+</body>
+</html>

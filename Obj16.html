@@ -1,0 +1,56 @@
+<!doctype html>
+<html lang="en">
+<head>
+ <title> Add and delete items Objective </title>
+ <meta charset="utf-8">
+ <style>
+ p {
+  font-style: italic;
+ }
+ li:hover {
+  cursor: pointer;
+ }
+ </style>
+  <script>
+    var myList = [];
+    window.onload = init;
+     
+    function init() {
+      var submitButton = document.getElementById("submitButton");
+      submitButton.onclick = addToList;
+    }
+  
+    function addToList() {
+        
+        //var ul = document.getElementById("list");
+        //var li = document.createElement("li");
+        
+        var node = document.getElementById("item");
+	var item = node.value;
+	
+	console.log(item);
+	myList.push(item);
+        
+        //var ul = document.createElement("ul");
+	//ul.appendChild(node);
+	//ul.innerHTML = "SNL";
+        
+        //document.getElementsByTagName(ul).innerHTML = myList;  // This doesnt work?
+        document.getElementById("display").innerHTML += item + "<br>";
+    }
+     
+  </script>
+</head>
+<body>
+ <form>
+ <label for="item">Add an item: </label>
+  <input id="item" type="text" size="20"><br>
+ <input id="submitButton" type="button" value="Add!">
+ </form>
+ <ul id="display">
+ </ul>
+ <p>
+ Click an item to remove it from the list.
+ </p>  
+</body>
+</html>

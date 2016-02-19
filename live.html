@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html>
+<body>
+
+<p>This example calls a function to convert input to money format:</p>
+
+<input
+    type="text" id="t1"
+    name="date" style="text-transform: uppercase";
+    placeholder="dd/mm/yyyy"
+    onkeyup="check(this.value);"
+    maxlength="10"
+/>
+
+<script>
+
+function check(t){
+          var v = t;
+
+        if (v.match(/^\d{2}$/) !== null) {
+            
+            t = v + '/';
+            // t = 'monkey';
+            document.getElementById("t1").value=t;
+        return ;
+        } 
+        else if (v.match(/^\d{2}\/\d{2}$/) !== null) {
+           
+            t = v + '/';
+            document.getElementById("t1").value=t;
+        return ;
+
+    }
+}
+
+
+</script>
+
+</body>
+</html>

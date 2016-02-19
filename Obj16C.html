@@ -1,0 +1,59 @@
+<!doctype html>
+<html lang="en">
+<head>
+ <title> Add and delete items Objective </title>
+ <meta charset="utf-8">
+ <style>
+ p {
+  font-style: italic;
+ }
+ li:hover {
+  cursor: pointer;
+ }
+ </style>
+  <script>
+    var myList = [];
+    window.onload = init;
+     
+    function init() {
+      var submitButton = document.getElementById("submitButton");
+      submitButton.onclick = addToList;
+      
+      
+    }
+       
+    function addToList() {        
+        
+        var ul = document.getElementById("item");
+	var item = ul.value;
+	
+	var listItem = document.createElement('li');  // This works from w3s createElement
+	var t = document.createTextNode(item);
+	listItem.onclick = dropFromList;
+	listItem.appendChild(t);
+	
+	document.body.appendChild(listItem);
+	
+	console.log(item);
+    }
+    
+    function dropFromList(e) {
+      var a = e.target;    
+      a.parentNode.removeChild(a);   
+    }
+      
+  </script>
+</head>
+<body>
+ <form>
+ <label for="item">Add an item: </label>
+  <input id="item" type="text" size="20"><br>
+ <input id="submitButton" type="button" value="Add!">
+ </form>
+ <ul>
+ </ul>
+ <p>
+ Click an item to remove it from the list.
+ </p>  
+</body>
+</html>

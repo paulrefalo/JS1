@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <title> JS formatting as you go </title>
+  <meta charset="utf-8">
+</head>
+<body>
+<p onkeydown="this.focus();">This example converts an input to money format on the fly:</p>
+$
+<input
+    type="text" id="t1"
+    name="money" style="text-transform: uppercase";
+    autofocus="autofocus"
+    placeholder="1234.56"
+    onkeypress="return isAllowed(event)"
+    onkeyup="check(this.value);"
+    // onkeyup="currencyFormat(this.value);"
+    maxlength="10"
+/>
+
+<script>
+window.onload = init;
+var t = 4;
+window.onload = function() {
+  isAllowed(5);
+  check(t);
+};
+
+function myFunction()
+{
+alert("Page is loaded");
+}
+
+
+
+var currentInput;						// Global var to control charCodes used
+var go = isAllowed(0);
+
+function check(t) {
+    t = t.replace(/\,/g,'');					// Strip out commas for re-formatting
+    var v = t;
+    if (v.match(/^-*\./) !== null) {
+      t = t.replace(".", "0.");
+    } else {
+      t = t.replace(/(\d)(?=(\d{3})+(?!\d))/g, "$1,");
+    }
+    currentInput = t;						// assign global var currentInput = t
+    document.getElementById("t1").value=t;			// output to id "t1"
+    return;
+}
+
+function isAllowed(evt) {					// function returns true if key is allowed
+    evt = (evt) ? evt : window.event;
+    var charCode = (evt.which) ? evt.which : evt.keyCode;
+//    if (currentInput.match(/./) !== null) {			// allow minus sign as first entry only
+//        if (charCode == 45) { return false; }			// dash is charCode 45
+//   }
+//    if (currentInput.match(/\./) !== null) {			// allow only one period or decimal
+//        if (charCode == 46) { return false; }			// period is charCode46
+//    }
+//    if (currentInput.match(/\.\d\d/) !== null) {		// allow two decimal places only
+//        return false; 			
+//    }
+
+    if (charCode > 44 && charCode < 58 && charCode != 47) { 	// allow [0-9] . -
+        return true; 						
+    }
+    return false;
+}
+
+</script>
+
+</body>
+</html>

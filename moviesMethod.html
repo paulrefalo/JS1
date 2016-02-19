@@ -1,0 +1,57 @@
+<!doctype html>
+<html lang="en">
+<head>
+ <title>Movie Objects</title>
+ <meta charset="utf-8">
+ <h2> Hayao Miyazaki Film Festival </h2>
+ <script>
+   window.onload = init;					// Define window.onload to function init
+
+   function Movie(title, year, genre, rating, showtimes) {	// Define constructor with Movie object properties
+      this.title = title;
+      this.year = year;
+      this.genre = genre;
+      this.rating = rating;
+      this.showtimes = showtimes
+      
+      this.updateRating = function(newRating) {			// Define obj method updateRating that takes one arg newRating
+          this.rating = newRating;				// The param resets the property this.rating
+          return this.rating;					// Method returns the property this.rating
+      };
+    }
+   
+   function init() {						// Populate constructor with new objects and values
+     var miyazaki1 = new Movie("Spirited Away", 2001, "Japanese Anime", 8.6, ["4:00", "6:00", "8:50"]);
+     var miyazaki2 = new Movie("Kiki's Delivery Service", 1989, "Japanese Anime", 7.9, ["4:30", "6:30", "9:50"]);
+     var miyazaki3 = new Movie("My Neighbor Totoro", 1988, "Japanese Anime", 8.3, ["5:00", "7:00", "8:30"]);
+     
+     var films = [miyazaki1, miyazaki2, miyazaki3];		// Create an array of the movies to loop over
+     
+     var div = document.getElementById("movies");		// Define the var div to the element id "movies" 
+     
+     for (i = 0; i < films.length; i++) {			// Loop over the films array with iterator i
+       div.innerHTML += "I hope you will enjoy " + films[i].title + " (Rated " + films[i].rating +	// Concatenate the
+        " on IMDB) from the year " + films[i].year +					// div.innerHTML for display
+        " showing this afternoon at the following times: ";
+        for (j = 0; j < films[i].showtimes.length; j++) {				// Loop through showtimes
+          div.innerHTML += films[i].showtimes[j];					// with iterator j
+          if ( j < films[i].showtimes.length - 1 ) {					// add a comma and a space 
+            div.innerHTML += ", ";							// if the list continues
+          }
+        }
+        div.innerHTML += " pm. <br> ";					// put a space pm. and line breat at the end
+     }	
+     // Display and call obj method updateRating in order to change the film's rating
+     div.innerHTML += "<br>UPDATE!!<br>The film " + miyazaki1.title + "'s rating has been updated to " + 
+       miyazaki1.updateRating(9) + "!<br>";
+     // Check again to be sure that the property this.rating for the obj has been updated correctly	
+     div.innerHTML += "<br>Let's check that again...yup, the new rating is definitely " + miyazaki1.rating + "!<br>";				
+   }									// end function init
+   
+ </script>
+</head>
+<body>
+ <div id="movies">
+ </div> 
+</body>
+</html> 

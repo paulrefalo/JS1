@@ -1,0 +1,75 @@
+<!doctype html>
+<html lang="en">
+<head>
+ <title> Add and delete items Objective </title>
+ <meta charset="utf-8">
+ <style>
+ p {
+  font-style: italic;
+ }
+ li:hover {
+  cursor: pointer;
+ }
+ </style>
+  <script>
+    var myList = [];
+    window.onload = init;
+     
+    function init() {
+      var submitButton = document.getElementById("submitButton");
+      submitButton.onclick = addToList;
+      
+    function KeyboardHandler(event) {
+      if (event.keyCode == 13) {
+        console.log("Enter Key");
+        addToList;
+      }
+    }
+
+  
+      
+    }
+       
+    function addToList() {        
+        
+        var ul = document.getElementById("item");
+	var item = ul.value;
+	document.getElementById("myForm").reset();
+	
+	// if (item == null || item == "") {
+	if (!item) {
+          alert("Please enter something.");
+          return;
+        }
+	else {
+	  var listItem = document.createElement('li');  // This works from w3s createElement
+	  var t = document.createTextNode(item);
+	  listItem.onclick = dropFromList;
+	  listItem.appendChild(t);
+	
+	  document.body.appendChild(listItem);
+	  
+	  //console.log(item);
+	}
+    }
+    
+    function dropFromList(e) {
+      var a = e.target;    
+      a.parentNode.removeChild(a);   
+    }
+      
+  </script>
+</head>
+<body>
+ <form id="myForm">
+ <label for="item">Add an item: </label>
+  <input id="item" type="text" size="20"><br>
+ <input id="submitButton" type="button" value="Add!" onKeyDown="KeyBoardHandler(event);">
+ </form>
+ <ul>
+ </ul>
+ <p>
+ Click an item to remove it from the list.
+ </p>  
+</body>
+</html>

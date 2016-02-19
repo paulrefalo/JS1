@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+<script>
+
+$(document).on('keyup', '.test', function() {
+    var x = $(this).val();
+    $(this).val(x.toString().replace(/,/g, "").replace(/\B(?=(\d{3})+(?!\d))/g, ","));
+});
+
+
+</script>
+</head>
+<body>
+
+<p>This example calls a function to convert input to money format:</p>
+
+
+<form>
+  <input class="test" type="text" />
+</form>
+</body>
+</html>

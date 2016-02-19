@@ -1,0 +1,28 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <title> Output to a Page </title>
+  <meta charset="utf-8">
+  <script> 
+    var width = 10;
+    var height = 10;
+    var maxWidth = 100;
+    var maxHeight = 150;
+    var color = "blue";
+    var i = 0;
+    while (i < 10) {
+      width = width + 10;
+      height = height + 15;
+      console.log(width, height, color);
+      if (i >= 5) {
+        color = "red";
+      }
+      i++;
+    }
+  </script>
+</head>
+<body>
+  <p id="output">
+  </p>
+</body>
+</html>
